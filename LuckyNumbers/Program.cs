@@ -16,7 +16,6 @@ namespace LuckyNumbers
             int usersLowestNumber = 0;
             int usersHighestNumber = 0;
             int usersLuckyNumbers = 0;
-            int gameWinningNumbers = 0;
             int jackpot = 360000000;
             int correctNumberGuess = 0;
             double usersTotalWinnings = 0;
@@ -44,58 +43,80 @@ namespace LuckyNumbers
                 //declaring an integer array for the user's lucky numbers
                 int[] usersLuckyNumbersArr = new int[6];
 
-               
-                for (int i = 0; i < usersLuckyNumbersArr.Length; i++)
-                {   
-                    //asking for the user's 6 lucky numbers
-                    Console.WriteLine("Please choose 6 lucky numbers:");
-                    usersLuckyNumbers = int.Parse(Console.ReadLine());
-
-                    // while loop that checks if the user's input is valid for the number range they set in the game
-                    while (usersLuckyNumbers < usersLowestNumber || usersLuckyNumbers > usersHighestNumber)
-                    {
-                        Console.WriteLine("I'm sorry, that is an invalid number.");
-                        Console.WriteLine("Please enter a valid number.");
-                        usersLuckyNumbers = int.Parse(Console.ReadLine());
-
-                    }
-
-                }
-
-
                 //declaring an integer array for the winning numbers
                 int[] gameWinningNumbersArr = new int[6];
 
                 //Random number method
                 Random numbers = new Random();
 
-               for (int i = 0; i < gameWinningNumbersArr.Length; i++)
+                int[] correctNumberGuessesArr = new int[6];
+
+
+
+                for (int i = 0; i < usersLuckyNumbersArr.Length; i++)
                 {   
-                    // looping through the range of numbers the user set to display random numbers and assign them to a gameWinningNumbers variable
-                    int randomNumbers = numbers.Next(usersLowestNumber, usersHighestNumber);
-                    Console.WriteLine("Lucky Number: " + randomNumbers);
-                    gameWinningNumbers = randomNumbers;
+                    //asking for the user's 6 lucky numbers
+                    Console.WriteLine("Please choose a lucky numbers:");
+                    usersLuckyNumbersArr[i] = int.Parse(Console.ReadLine());
 
-
-                    //keeping count on how many numbers the user guessed right and displaying it to them
-                    if (usersLuckyNumbers == gameWinningNumbers)
+                    // while loop that checks if the user's input is valid for the number range they set in the game
+                    while (usersLuckyNumbersArr[i] < usersLowestNumber || usersLuckyNumbersArr[i] > usersHighestNumber)
                     {
-                        correctNumberGuess++;
-                        Console.WriteLine("You guessed " + correctNumberGuess + " numbers correctly!");
+                        Console.WriteLine("I'm sorry, that is an invalid number.");
+                        Console.WriteLine("Please enter a valid number.");
+                        usersLuckyNumbersArr[i] = int.Parse(Console.ReadLine());
+                        
+                    }
+                    usersLuckyNumbersArr[i] = usersLuckyNumbers;
+
+                    
+                    for (int j = 0; j < gameWinningNumbersArr.Length; j++)
+                    {
+                        // looping through the range of numbers the user set to display random numbers and assign them to a gameWinningNumbers variable
+                        int randomNumbers = numbers.Next(usersLowestNumber, usersHighestNumber);
+                        Console.WriteLine("Lucky Number: " + randomNumbers);
+
+
+                    if (usersLuckyNumbersArr[i] == gameWinningNumbersArr[j])
+                        {
+                            correctNumberGuessesArr[i]++;
+                            correctNumberGuessesArr[i] = correctNumberGuess;
+                        }
+
+
 
                     }
+
+                    
                 }
 
-               //logic that divides the jackpot up based on how many correct numbers the user had and displaying their jackpot
+
+                
+
+
+              
+
+
+
+                   
+
+                   
+
+                //logic that divides the jackpot up based on how many correct numbers the user had and displaying their jackpot
+
+
+
 
                 if (correctNumberGuess == 1)
                 {
                     usersTotalWinnings = jackpot / 6;
+                    Console.WriteLine("You guessed " + correctNumberGuess + " numbers correctly!");
                     Console.WriteLine("You won $" + usersTotalWinnings + "!");
                 }
                 else if (correctNumberGuess == 2)
                 {
                     usersTotalWinnings = jackpot / 5;
+                    Console.WriteLine("You guessed " + correctNumberGuess + " numbers correctly!");
                     Console.WriteLine("You won $" + usersTotalWinnings + "!");
                 }
                 else if (correctNumberGuess == 3)
@@ -106,20 +127,24 @@ namespace LuckyNumbers
                 else if (correctNumberGuess == 4)
                 {
                     usersTotalWinnings = jackpot / 3;
+                    Console.WriteLine("You guessed " + correctNumberGuess + " numbers correctly!");
                     Console.WriteLine("You won $" + usersTotalWinnings + "!");
                 }
                 else if (correctNumberGuess == 5)
                 {
                     usersTotalWinnings = jackpot / 2;
+                    Console.WriteLine("You guessed " + correctNumberGuess + " numbers correctly!");
                     Console.WriteLine("You won $" + usersTotalWinnings + "!");
                 }
                 else if (correctNumberGuess == 6)
                 {
                     usersTotalWinnings = jackpot;
+                    Console.WriteLine("You guessed " + correctNumberGuess + " numbers correctly!");
                     Console.WriteLine("You won $" + usersTotalWinnings + "!");
                 }
                 else
                 {
+                    Console.WriteLine("You guessed " + correctNumberGuess + " numbers correctly!");
                     Console.WriteLine("You won $" + usersTotalWinnings + "!");
                 }
 
